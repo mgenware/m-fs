@@ -1,5 +1,5 @@
 # m-fs
-Promise version of common Node.js fs methods
+Promise version of common Node.js fs methods.
 
 ### Installation
 ```bash
