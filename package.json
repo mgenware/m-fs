@@ -1,0 +1,43 @@
+{
+  "name": "m-fs",
+  "version": "0.0.1",
+  "description": "Promise version of common Node.js fs methods",
+  "main": "dist/lib/main.js",
+  "types": "dist/lib/main.d.ts",
+  "author": "Mgen (https://www.mgenware.com)",
+  "homepage": "https://github.com/mgenware/m-fs",
+  "bugs": "https://github.com/mgenware/m-fs/issues",
+  "keywords": [
+    "fs", "promise"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mgenware/m-fs.git"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/mocha": "*",
+    "@types/node": "*",
+    "copyfiles": "*",
+    "mocha": "*",
+    "typescript": "*"
+  },
+  "scripts": {
+    "test": "yarn run lint && yarn run compile && yarn run copy && mocha \"dist/test/*.js\"",
+    "dev_test": "mocha \"dist/test/*.js\"",
+    "build": "tsc && yarn test",
+    "compile": "tsc",
+    "dev": "tsc -w",
+    "prepublishOnly": "yarn run test",
+    "lint": "tslint --project .",
+    "copy": "copyfiles \"test/data/**/*.*\" \"dist\""
+  },
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "mkdirp-promise": "^5.0.1",
+    "node-filter-async": "^0.0.3"
+  }
+}
