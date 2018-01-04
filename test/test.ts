@@ -73,19 +73,19 @@ describe('dirExists', () => {
 describe('listSubPaths', () => {
   it('An existent dir', async () => {
     const paths = await mfs.listSubPaths(resolve('data'));
-    assert.deepEqual(paths.sort(), ['data/a', 'data/b', 'data/a.txt', 'data/b.json'].map((f) => resolve(f)).sort());
+    assert.deepEqual(paths.sort(), ['a', 'b', 'a.txt', 'b.json'].sort());
   });
 });
 describe('listSubDirs', () => {
   it('An existent dir', async () => {
     const paths = await mfs.listSubDirs(resolve('data'));
-    assert.deepEqual(paths.sort(), ['data/a', 'data/b'].map((f) => resolve(f)).sort());
+    assert.deepEqual(paths.sort(), ['a', 'b'].sort());
   });
 });
 describe('listSubFiles', () => {
   it('An existent dir', async () => {
     const paths = await mfs.listSubFiles(resolve('data'));
-    assert.deepEqual(paths.sort(), ['data/a.txt', 'data/b.json'].map((f) => resolve(f)).sort());
+    assert.deepEqual(paths.sort(), ['a.txt', 'b.json'].sort());
   });
 });
 

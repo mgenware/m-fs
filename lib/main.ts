@@ -56,15 +56,13 @@ export async function listSubPaths(
   path: string,
   options?: { encoding: BufferEncoding | null } | BufferEncoding | undefined | null,
 ): Promise<string[]> {
-  return await readdirAsync(path, options).then((files: string[]) => {
-    return files.map((file) => nodepath.join(path, file));
-  });
+  return await readdirAsync(path, options);
 }
 
 export async function listSubDirs(dir: string): Promise<string[]> {
   const paths: string[] = await listSubPaths(dir);
   const dirs = await filterAsync(paths, async (path) => {
-    const stat = await statAsync(path);
+    const stat = await statAsync(nodepath.join(dir, path));
     return stat.isDirectory();
   });
   return dirs;
@@ -73,7 +71,7 @@ export async function listSubDirs(dir: string): Promise<string[]> {
 export async function listSubFiles(dir: string): Promise<string[]> {
   const paths: string[] = await listSubPaths(dir);
   const dirs = await filterAsync(paths, async (path) => {
-    const stat = await statAsync(path);
+    const stat = await statAsync(nodepath.join(dir, path));
     return stat.isFile();
   });
   return dirs;
