@@ -48,15 +48,14 @@ Like `statAsync`, but returns `null` if error happened.
 ### `pathExists`, `dirExists`, `fileExists`
 Returns `true` if a given path|dir|file exists.
 
-### `readdirAsync`
-Promisified `fs.readdir`.
-
 ### `listSubPaths`, `listSubDirs`, `listSubFiles`
-Unlike `readdirAsync`, these methods will join the result path to the source path you passed in:
 ```javascript
-await readdirAsync('./data/docs');
-// ['resume.pdf', 'readme.md']
-
 await listSubPaths('./data/docs');
-// ['./data/docs/resume.pdf', './data/docs/readme.md']
+// ['backup', 'resume.pdf', 'readme.md']
+
+await listSubDirs('./data/docs');
+// ['backup']
+
+await listSubFiles('./data/docs');
+// ['resume.pdf', 'readme.md']
 ```
