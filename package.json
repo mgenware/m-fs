@@ -1,6 +1,6 @@
 {
   "name": "m-fs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Promise version of common Node.js fs methods",
   "main": "dist/lib/main.js",
   "types": "dist/lib/main.d.ts",
