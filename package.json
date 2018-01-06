@@ -8,7 +8,8 @@
   "homepage": "https://github.com/mgenware/m-fs",
   "bugs": "https://github.com/mgenware/m-fs/issues",
   "keywords": [
-    "fs", "promise"
+    "fs",
+    "promise"
   ],
   "repository": {
     "type": "git",
@@ -16,22 +17,22 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@types/mocha": "*",
+    "@types/jest": "^22.0.1",
     "@types/node": "*",
     "copyfiles": "*",
-    "mocha": "*",
+    "jest": "^22.0.4",
     "tslint": "*",
     "typescript": "*"
   },
   "scripts": {
-    "test": "yarn run clean && yarn run compile && yarn run lint && yarn run copy && mocha \"dist/test/*.js\"",
-    "dev_test": "mocha \"dist/test/*.js\"",
+    "test": "yarn run clean && yarn run compile && yarn run lint && yarn run copy && yarn dev_test",
+    "dev_test": "jest",
     "build": "yarn test",
     "compile": "tsc",
     "dev": "yarn run clean && tsc -w",
     "prepublishOnly": "yarn run test",
     "lint": "tslint --project .",
-    "copy": "copyfiles \"test/data/**/*.*\" \"dist\"",
+    "copy": "copyfiles \"__tests__/data/**/*.*\" \"dist\"",
     "clean:dist": "rm -rf dist",
     "clean": "npm run clean:dist"
   },
