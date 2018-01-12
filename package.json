@@ -25,14 +25,14 @@
     "typescript": "*"
   },
   "scripts": {
-    "test": "yarn run clean && yarn run compile && yarn run lint && yarn run copy && yarn dev_test",
+    "test": "yarn run clean && yarn run compile && yarn run lint && yarn run copy && yarn run dev_test",
     "dev_test": "jest",
     "build": "yarn test",
     "compile": "tsc",
     "dev": "yarn run clean && tsc -w",
     "prepublishOnly": "yarn run test",
-    "lint": "tslint --project .",
-    "copy": "copyfiles \"__tests__/data/**/*.*\" \"dist\"",
+    "lint": "tslint --project tsconfig.json --config tslint.json",
+    "copy": "copyfiles \"tests/data/**/*.*\" \"dist\"",
     "clean:dist": "rm -rf dist",
     "clean": "npm run clean:dist"
   },

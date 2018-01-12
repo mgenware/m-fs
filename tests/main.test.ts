@@ -86,7 +86,7 @@ test('listSubFiles (An existent dir)', async () => {
 
 test('writeFileAsync (writes to an non-existent dir)', async () => {
   expect.assertions(1);
-  // generate an random file name in tmp dir
+  // generate a random file name in tmp dir
   const tmp = nodepath.join(os.tmpdir(), `tmp-m-fs-${new Date().getTime()}`, 't.txt');
   await mfs.writeFileAsync(tmp, 'Abc');
   const content = await mfs.readTextFileAsync(tmp);
