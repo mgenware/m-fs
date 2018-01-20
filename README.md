@@ -1,5 +1,6 @@
 # m-fs
 
+[![MEAN Module](https://img.shields.io/badge/MEAN%20Module-TypeScript-blue.svg)](https://github.com/mgenware/MEAN-Module)
 [![Build Status](https://travis-ci.org/mgenware/m-fs.svg?branch=master)](http://travis-ci.org/mgenware/m-fs)
 [![npm version](https://badge.fury.io/js/m-fs.svg)](https://badge.fury.io/js/m-fs)
 [![Node.js Version](http://img.shields.io/node/v/m-fs.svg)](https://nodejs.org)
