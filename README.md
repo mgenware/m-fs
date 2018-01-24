@@ -35,10 +35,10 @@ import mfs from 'm-fs';
 Promisified `fs.readFile`.
 
 ### `nodeWriteFileAsync`
-Promisified `fs.writeFile`. Consider using `writeFileAsync` instead. Because `fs.writeFile` would return an error if write to a non-existing directory.
+Promisified `fs.writeFile`. Consider using `writeFileAsync` instead. Because `fs.writeFile` will error when it writes to a non-existing directory.
 
 ### `writeFileAsync`
-Unlike `nodeWriteFileAsync`, this method will ensure directory is created before writing the file.
+Unlike `nodeWriteFileAsync`, this method will make ensure the target directory is created before writing the file.
 
 ### `statAsync`
 Promisified `fs.stat`.
