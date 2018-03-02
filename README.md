@@ -27,7 +27,7 @@ const mfs = require('m-fs');
 
 TypeScript:
 ```typescript
-import mfs from 'm-fs';
+import * as mfs from 'm-fs';
 ```
 
 ## API
