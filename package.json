@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "bluebird": "^3.5.3",
-    "mkdirp-promise": "^5.0.1",
+    "make-dir": "^1.3.0",
     "node-filter-async": "^1.0.1"
   },
   "files": [
@@ -44,6 +44,7 @@
   ],
   "devDependencies": {
     "@types/jest": "^23.3.10",
+    "@types/make-dir": "^1.0.3",
     "@types/node": "^10.12.11",
     "copyfiles": "^2.1.0",
     "jest": "^23.6.0",

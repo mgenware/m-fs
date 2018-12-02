@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as nodepath from 'path';
 import { filterAsync } from 'node-filter-async';
-const mkdirp = require('mkdirp-promise');
+import * as mkDir from 'make-dir';
 const { promisify } = require('bluebird');
 
 export const nodeWriteFileAsync = promisify(fs.writeFile);
@@ -16,14 +16,18 @@ export async function readTextFileAsync(path: string): Promise<string> {
 export async function writeFileAsync(
   path: string,
   data: any,
-  options?: { encoding?: string | null; mode?: number | string; flag?: string; } | string | undefined | null,
+  options?:
+    | { encoding?: string | null; mode?: number | string; flag?: string }
+    | string
+    | undefined
+    | null
 ): Promise<any> {
   const dirPath = nodepath.dirname(path);
-  await mkdirp(dirPath);
+  await mkDir(dirPath);
   await nodeWriteFileAsync(path, data, options);
 }
 
-export async function statOrNullAsync(path: string): Promise<fs.Stats|null> {
+export async function statOrNullAsync(path: string): Promise<fs.Stats | null> {
   try {
     return await statAsync(path);
   } catch {
@@ -54,14 +58,18 @@ export async function dirExists(path: string): Promise<boolean> {
 
 export async function listSubPaths(
   path: string,
-  options?: { encoding: BufferEncoding | null } | BufferEncoding | undefined | null,
+  options?:
+    | { encoding: BufferEncoding | null }
+    | BufferEncoding
+    | undefined
+    | null
 ): Promise<string[]> {
   return await readdirAsync(path, options);
 }
 
 export async function listSubDirs(dir: string): Promise<string[]> {
   const paths: string[] = await listSubPaths(dir);
-  const dirs = await filterAsync(paths, async (path) => {
+  const dirs = await filterAsync(paths, async path => {
     const stat = await statAsync(nodepath.join(dir, path));
     return stat.isDirectory();
   });
@@ -70,7 +78,7 @@ export async function listSubDirs(dir: string): Promise<string[]> {
 
 export async function listSubFiles(dir: string): Promise<string[]> {
   const paths: string[] = await listSubPaths(dir);
-  const dirs = await filterAsync(paths, async (path) => {
+  const dirs = await filterAsync(paths, async path => {
     const stat = await statAsync(nodepath.join(dir, path));
     return stat.isFile();
   });
