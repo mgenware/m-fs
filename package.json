@@ -33,8 +33,8 @@
     "node": ">=8.0.0"
   },
   "dependencies": {
-    "make-dir": "^1.3.0",
-    "node-filter-async": "^1.0.1"
+    "make-dir": "^2.1.0",
+    "node-filter-async": "^1.1.1"
   },
   "files": [
     "dist/lib",
@@ -43,12 +43,19 @@
     "package.json"
   ],
   "devDependencies": {
-    "@types/jest": "^23.3.10",
-    "@types/make-dir": "^1.0.3",
-    "@types/node": "^10.12.11",
+    "@types/jest": "^24.0.11",
+    "@types/make-dir": "^2.1.0",
+    "@types/node": "^11.11.3",
     "copyfiles": "^2.1.0",
-    "jest": "^23.6.0",
-    "tslint": "^5.11.0",
-    "typescript": "^3.2.1"
+    "jest": "^24.5.0",
+    "tslint": "^5.14.0",
+    "typescript": "^3.3.3333"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all"
+  },
+  "jest": {
+    "moduleFileExtensions": ["js"]
   }
 }

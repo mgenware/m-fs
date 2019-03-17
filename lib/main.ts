@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as nodepath from 'path';
 import { filterAsync } from 'node-filter-async';
-import * as mkDir from 'make-dir';
+import mkDir from 'make-dir';
 import { promisify } from 'util';
 
 export const nodeWriteFileAsync = promisify(fs.writeFile);
@@ -20,7 +20,7 @@ export async function writeFileAsync(
     | { encoding?: string | null; mode?: number | string; flag?: string }
     | string
     | undefined
-    | null
+    | null,
 ): Promise<any> {
   const dirPath = nodepath.dirname(path);
   await mkDir(dirPath);
@@ -62,7 +62,7 @@ export async function listSubPaths(
     | { encoding: BufferEncoding | null }
     | BufferEncoding
     | undefined
-    | null
+    | null,
 ): Promise<string[]> {
   return await readdirAsync(path, options);
 }
