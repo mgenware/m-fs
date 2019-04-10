@@ -1,10 +1,12 @@
-const main = require('../..');
-import * as fs from 'fs';
+import { promisify } from 'util';
+import { stat } from 'fs';
+const main = require('../');
+const statAsync = promisify(stat);
 
-it('Check a function', () => {
-  expect(typeof main.listSubFiles).toEqual('function');
+test('Verify type definition files', async () => {
+  expect((await statAsync('./dist/main.d.ts')).isFile()).toBeTruthy();
 });
 
-it('Check type definition file', () => {
-  expect(fs.statSync('./dist/lib/main.d.ts').isFile()).toBeTruthy();
+it('Verify a member', () => {
+  expect(typeof main.listSubFiles).toEqual('function');
 });

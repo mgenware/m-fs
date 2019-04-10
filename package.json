@@ -2,8 +2,8 @@
   "name": "m-fs",
   "version": "2.1.1",
   "description": "Promise version of common Node.js fs methods",
-  "main": "dist/lib/main.js",
-  "types": "dist/lib/main.d.ts",
+  "main": "dist/main.js",
+  "types": "dist/main.d.ts",
   "author": "Mgen (https://www.mgenware.com)",
   "homepage": "https://github.com/mgenware/m-fs",
   "bugs": "https://github.com/mgenware/m-fs/issues",
@@ -18,37 +18,17 @@
   },
   "license": "MIT",
   "scripts": {
-    "test": "yarn run clean && yarn run compile && yarn run lint && yarn run copy && yarn run dev_test",
-    "dev_test": "jest",
-    "build": "yarn test",
-    "compile": "tsc",
-    "dev": "yarn run clean && tsc -w",
+    "test": "yarn run clean && yarn run compile && yarn run lint && yarn run t",
+    "t": "jest",
+    "build": "cross-env NODE_ENV=production yarn test",
+    "compile": "tsc -b tests",
+    "dev": "cross-env NODE_ENV=development yarn run clean && tsc -b tests -w",
     "prepublishOnly": "yarn run test",
     "lint": "tslint --project tsconfig.json --config tslint.json",
-    "copy": "copyfiles \"tests/data/**/*.*\" \"dist\"",
-    "clean:dist": "rm -rf dist",
-    "clean": "npm run clean:dist"
+    "clean": "del-cli dist && del-cli dist_tests"
   },
   "engines": {
     "node": ">=8.0.0"
-  },
-  "dependencies": {
-    "make-dir": "^3.0.0",
-    "node-filter-async": "^1.1.2"
-  },
-  "files": [
-    "dist/lib",
-    ".gitignore",
-    "README.md",
-    "package.json"
-  ],
-  "devDependencies": {
-    "@types/jest": "^24.0.11",
-    "@types/node": "^11.13.2",
-    "copyfiles": "^2.1.0",
-    "jest": "^24.7.1",
-    "tslint": "^5.15.0",
-    "typescript": "^3.4.2"
   },
   "prettier": {
     "singleQuote": true,
@@ -58,5 +38,18 @@
     "moduleFileExtensions": [
       "js"
     ]
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.11",
+    "@types/node": "^11.13.2",
+    "cross-env": "^5.2.0",
+    "del-cli": "^1.1.0",
+    "jest": "^24.7.1",
+    "tslint": "^5.15.0",
+    "typescript": "^3.4.3"
+  },
+  "dependencies": {
+    "make-dir": "^3.0.0",
+    "node-filter-async": "^1.1.2"
   }
 }

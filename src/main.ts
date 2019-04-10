@@ -37,7 +37,7 @@ export async function statOrNullAsync(path: string): Promise<fs.Stats | null> {
 
 export async function pathExists(path: string): Promise<boolean> {
   const stat = await statOrNullAsync(path);
-  return stat != null;
+  return !!stat;
 }
 
 export async function fileExists(path: string): Promise<boolean> {
