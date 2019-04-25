@@ -28,7 +28,7 @@
     "clean": "del-cli dist && del-cli dist_tests"
   },
   "engines": {
-    "node": ">=8.0.0"
+    "node": ">=8.6.0"
   },
   "prettier": {
     "singleQuote": true,
@@ -41,12 +41,12 @@
   },
   "devDependencies": {
     "@types/jest": "^24.0.11",
-    "@types/node": "^11.13.2",
+    "@types/node": "^11.13.7",
     "cross-env": "^5.2.0",
     "del-cli": "^1.1.0",
     "jest": "^24.7.1",
-    "tslint": "^5.15.0",
-    "typescript": "^3.4.3"
+    "tslint": "^5.16.0",
+    "typescript": "^3.4.5"
   },
   "dependencies": {
     "make-dir": "^3.0.0",
