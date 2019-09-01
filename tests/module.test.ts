@@ -2,11 +2,12 @@ import { promisify } from 'util';
 import { stat } from 'fs';
 const main = require('../');
 const statAsync = promisify(stat);
+import * as assert from 'assert';
 
-test('Verify type definition files', async () => {
-  expect((await statAsync('./dist/main.d.ts')).isFile()).toBeTruthy();
+it('Verify type definition files', async () => {
+  assert.ok((await statAsync('./dist/main.d.ts')).isFile());
 });
 
 it('Verify a member', () => {
-  expect(typeof main.listSubFiles).toEqual('function');
+  assert.equal(typeof main.listSubFiles, 'function');
 });

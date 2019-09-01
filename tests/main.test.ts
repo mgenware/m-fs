@@ -2,98 +2,87 @@ import * as mfs from '../';
 import * as fs from 'fs';
 import * as nodepath from 'path';
 import * as os from 'os';
+import * as assert from 'assert';
 
 const TESTS_DIR = '../tests/';
+const expect = assert.equal;
 
 function resolve(path: string): string {
   return nodepath.join(__dirname, path);
 }
 
-test('readFileAsync', async () => {
-  expect.assertions(1);
+it('readFileAsync', async () => {
   const buffer = await mfs.readFileAsync(resolve(TESTS_DIR + 'data/a.txt'));
-  expect(buffer.toString()).toBe('test\n');
+  expect(buffer.toString(), 'test\n');
 });
 
-test('readTextFileAsync', async () => {
-  expect.assertions(1);
-  await expect(
-    mfs.readTextFileAsync(resolve(TESTS_DIR + 'data/a.txt')),
-  ).resolves.toBe('test\n');
+it('readTextFileAsync', async () => {
+  expect(
+    await mfs.readTextFileAsync(resolve(TESTS_DIR + 'data/a.txt')),
+    'test\n',
+  );
 });
 
-test('statOrNullAsync (An existent file)', async () => {
-  expect.assertions(1);
+it('statOrNullAsync (An existent file)', async () => {
   const stat = (await mfs.statOrNullAsync(
     resolve(TESTS_DIR + 'data/a.txt'),
   )) as fs.Stats;
-  expect(stat.isFile()).toBe(true);
+  expect(stat.isFile(), true);
 });
 
-test('statOrNullAsync (A non-existent)', async () => {
-  expect.assertions(1);
+it('statOrNullAsync (A non-existent)', async () => {
   const stat = (await mfs.statOrNullAsync(
     resolve('___FILE__NOT_EXISTS'),
   )) as fs.Stats;
-  expect(stat).toBeNull();
+  expect(stat, null);
 });
 
-test('pathExists (An existent file)', async () => {
-  expect.assertions(1);
+it('pathExists (An existent file)', async () => {
   const exists = await mfs.pathExists(resolve(TESTS_DIR + 'data/a.txt'));
-  expect(exists).toBe(true);
+  expect(exists, true);
 });
 
-test('pathExists (An non-existent file)', async () => {
-  expect.assertions(1);
+it('pathExists (An non-existent file)', async () => {
   const exists = await mfs.pathExists(resolve('___FILE__NOT_EXISTS'));
-  expect(exists).toBe(false);
+  expect(exists, false);
 });
 
-test('fileExists (An existent file)', async () => {
-  expect.assertions(1);
+it('fileExists (An existent file)', async () => {
   const exists = await mfs.fileExists(resolve(TESTS_DIR + 'data/a.txt'));
-  expect(exists).toBe(true);
+  expect(exists, true);
 });
 
-test('fileExists (An non-existent file)', async () => {
-  expect.assertions(1);
+it('fileExists (An non-existent file)', async () => {
   const exists = await mfs.fileExists(resolve('___FILE__NOT_EXISTS'));
-  expect(exists).toBe(false);
+  expect(exists, false);
 });
 
-test('dirExists (An existent dir)', async () => {
-  expect.assertions(1);
+it('dirExists (An existent dir)', async () => {
   const exists = await mfs.dirExists(resolve(TESTS_DIR + 'data/a'));
-  expect(exists).toBe(true);
+  expect(exists, true);
 });
 
-test('dirExists (An non-existent dir)', async () => {
-  expect.assertions(1);
+it('dirExists (An non-existent dir)', async () => {
   const exists = await mfs.dirExists(resolve('___FILE__NOT_EXISTS'));
-  expect(exists).toBe(false);
+  expect(exists, false);
 });
 
-test('listSubPaths (An existent dir)', async () => {
-  expect.assertions(1);
+it('listSubPaths (An existent dir)', async () => {
   const paths = await mfs.listSubPaths(resolve(TESTS_DIR + 'data'));
-  expect(paths.sort()).toEqual(['a', 'b', 'a.txt', 'b.json'].sort());
+  assert.deepEqual(paths.sort(), ['a', 'b', 'a.txt', 'b.json'].sort());
 });
 
-test('listSubDirs (An existent dir)', async () => {
-  expect.assertions(1);
+it('listSubDirs (An existent dir)', async () => {
   const paths = await mfs.listSubDirs(resolve(TESTS_DIR + 'data'));
-  expect(paths.sort()).toEqual(['a', 'b'].sort());
+  assert.deepEqual(paths.sort(), ['a', 'b'].sort());
 });
 
-test('listSubFiles (An existent dir)', async () => {
-  expect.assertions(1);
+it('listSubFiles (An existent dir)', async () => {
   const paths = await mfs.listSubFiles(resolve(TESTS_DIR + 'data'));
-  expect(paths.sort()).toEqual(['a.txt', 'b.json'].sort());
+  assert.deepEqual(paths.sort(), ['a.txt', 'b.json'].sort());
 });
 
-test('writeFileAsync (writes to an non-existent dir)', async () => {
-  expect.assertions(1);
+it('writeFileAsync (writes to an non-existent dir)', async () => {
   // generate a random file name in tmp dir
   const tmp = nodepath.join(
     os.tmpdir(),
@@ -102,5 +91,5 @@ test('writeFileAsync (writes to an non-existent dir)', async () => {
   );
   await mfs.writeFileAsync(tmp, 'Abc');
   const content = await mfs.readTextFileAsync(tmp);
-  expect(content).toBe('Abc');
+  expect(content, 'Abc');
 });
