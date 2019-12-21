@@ -1,7 +1,7 @@
 {
   "name": "m-fs",
   "version": "2.3.2",
-  "description": "Promise version of common Node.js fs methods",
+  "description": "Common Node.js file system promises API",
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
   "author": "Mgen (https://www.mgenware.com)",
@@ -9,8 +9,7 @@
   "bugs": "https://github.com/mgenware/m-fs/issues",
   "keywords": [
     "fs",
-    "promise",
-    "async"
+    "file system"
   ],
   "repository": {
     "type": "git",
@@ -32,15 +31,15 @@
   },
   "devDependencies": {
     "@types/mocha": "^5.2.7",
-    "@types/node": "^12.0.7",
-    "cross-env": "^5.2.0",
-    "del-cli": "^2.0.0",
-    "mocha": "^6.2.0",
-    "tslint": "^5.17.0",
-    "typescript": "^3.5.1"
+    "@types/node": "^12.12.21",
+    "cross-env": "^6.0.3",
+    "del-cli": "^3.0.0",
+    "mocha": "^6.2.2",
+    "tslint": "^5.20.1",
+    "typescript": "^3.7.4"
   },
   "dependencies": {
     "make-dir": "^3.0.0",
-    "node-filter-async": "^1.1.2"
+    "node-filter-async": "^1.1.4"
   }
 }
