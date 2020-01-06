@@ -43,11 +43,11 @@ import * as mfs from 'm-fs';
 
 ### `nodeWriteFileAsync`
 
-`fs.writeFile` in a Promise. Consider using `writeFileAsync` instead. Because `fs.writeFile` will error when it writes to a non-existing directory.
+`fs.writeFile` in a Promise. Consider using `writeFileAsync` instead as `fs.writeFile` errors when it writes to a non-existent directory.
 
 ### `writeFileAsync`
 
-Unlike `nodeWriteFileAsync`, this method will make ensure the target directory is created before writing the file.
+Unlike `nodeWriteFileAsync`, this method makes ensure the target directory is created before writing the file.
 
 ### `statAsync`
 
@@ -55,15 +55,15 @@ Unlike `nodeWriteFileAsync`, this method will make ensure the target directory i
 
 ### `statOrNullAsync`
 
-Like `statAsync`, but returns `null` if error happened.
+Like `statAsync`, but returns `null` on error.
 
 ### `pathExists`, `dirExists`, `fileExists`
 
-Returns `true` if a given path|dir|file exists.
+Returns `true` if the given path/directory/file exists.
 
 ### `listSubPaths`, `listSubDirs`, `listSubFiles`
 
-```javascript
+```js
 await listSubPaths('./data/docs');
 // ['backup', 'resume.pdf', 'readme.md']
 
