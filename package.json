@@ -32,7 +32,7 @@
     "/dist/**/*.map"
   ],
   "engines": {
-    "node": ">=8.6.0"
+    "node": ">=10.0.0"
   },
   "devDependencies": {
     "@types/mocha": "^7.0.2",

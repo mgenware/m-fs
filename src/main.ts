@@ -2,15 +2,14 @@ import * as fs from 'fs';
 import * as nodepath from 'path';
 import filterAsync from 'node-filter-async';
 import * as mkDir from 'make-dir';
-import { promisify } from 'util';
 
-export const nodeWriteFileAsync = promisify(fs.writeFile);
-export const readFileAsync = promisify(fs.readFile);
-export const statAsync = promisify(fs.stat);
-export const readdirAsync = promisify(fs.readdir);
+export const nodeWriteFileAsync = fs.promises.writeFile;
+export const readFileAsync = fs.promises.readFile;
+export const statAsync = fs.promises.stat;
+export const readdirAsync = fs.promises.readdir;
 
 export async function readTextFileAsync(path: string): Promise<string> {
-  return await readFileAsync(path, 'utf8');
+  return await fs.promises.readFile(path, 'utf8');
 }
 
 export async function writeFileAsync(
@@ -21,7 +20,7 @@ export async function writeFileAsync(
     | string
     | undefined
     | null,
-): Promise<any> {
+): Promise<void> {
   const dirPath = nodepath.dirname(path);
   await mkDir(dirPath);
   await nodeWriteFileAsync(path, data, options);
