@@ -1,6 +1,6 @@
 {
   "name": "m-fs",
-  "version": "2.3.4",
+  "version": "3.0.0",
   "description": "Common Node.js file system promises API",
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
