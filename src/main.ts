@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as nodepath from 'path';
-import { filterAsync } from 'node-filter-async';
+import filterAsync from 'node-filter-async';
 import * as mkDir from 'make-dir';
 import { promisify } from 'util';
 
