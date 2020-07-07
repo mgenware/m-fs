@@ -11,7 +11,7 @@
     "max-classes-per-file": false,
     "no-any": false,
     "strict-type-predicates": true,
-    "arrow-parens": [true, "ban-single-arg-parens"]
+    "arrow-parens": true
   },
   "rulesDirectory": []
 }
