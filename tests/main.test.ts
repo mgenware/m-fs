@@ -72,6 +72,19 @@ it('listSubPaths (An existent dir)', async () => {
   assert.deepEqual(paths.sort(), ['a', 'b', 'a.txt', 'b.json'].sort());
 });
 
+it('listSubPathsWithType (An existent dir)', async () => {
+  const paths = await mfs.subPathsWithType(resolve(TESTS_DIR + 'data'));
+  assert.deepEqual(
+    paths.sort((a, b) => a.path.localeCompare(b.path)),
+    [
+      { path: 'a', isFile: false },
+      { path: 'b', isFile: false },
+      { path: 'a.txt', isFile: true },
+      { path: 'b.json', isFile: true },
+    ].sort((a, b) => a.path.localeCompare(b.path)),
+  );
+});
+
 it('listSubDirs (An existent dir)', async () => {
   const paths = await mfs.subDirs(resolve(TESTS_DIR + 'data'));
   assert.deepEqual(paths.sort(), ['a', 'b'].sort());

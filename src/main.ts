@@ -52,14 +52,37 @@ export async function dirExists(path: string): Promise<boolean> {
 }
 
 export async function subPaths(
-  path: string,
+  dir: string,
   options?:
     | { encoding: BufferEncoding | null }
     | BufferEncoding
     | undefined
     | null,
 ): Promise<string[]> {
-  return await readdirAsync(path, options);
+  return await readdirAsync(dir, options);
+}
+
+export interface PathInfo {
+  path: string;
+  isFile: boolean;
+}
+
+export async function subPathsWithType(
+  dir: string,
+  options?:
+    | { encoding: BufferEncoding | null }
+    | BufferEncoding
+    | undefined
+    | null,
+): Promise<PathInfo[]> {
+  const paths = await subPaths(dir, options);
+  return Promise.all(
+    paths.map(async (path) => {
+      const stat = await statAsync(nodepath.join(dir, path));
+      const isFile = stat.isFile();
+      return { path, isFile };
+    }),
+  );
 }
 
 export async function subDirs(dir: string): Promise<string[]> {

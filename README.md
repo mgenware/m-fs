@@ -67,6 +67,9 @@ Returns `true` if the given path/directory/file exists.
 await subPaths('./data/docs');
 // ['backup', 'resume.pdf', 'readme.md']
 
+await subPathsWithType('./data/docs');
+// [{ path: 'backup', isFile: false }, { path: 'resume.pdf', isFile: true }, { path: 'readme.md', isFile: true }]
+
 await subDirs('./data/docs');
 // ['backup']
 
