@@ -61,15 +61,15 @@ Like `statAsync`, but returns `null` on error.
 
 Returns `true` if the given path/directory/file exists.
 
-### `listSubPaths`, `listSubDirs`, `listSubFiles`
+### `subPaths`, `subDirs`, `subFiles`
 
 ```js
-await listSubPaths('./data/docs');
+await subPaths('./data/docs');
 // ['backup', 'resume.pdf', 'readme.md']
 
-await listSubDirs('./data/docs');
+await subDirs('./data/docs');
 // ['backup']
 
-await listSubFiles('./data/docs');
+await subFiles('./data/docs');
 // ['resume.pdf', 'readme.md']
 ```

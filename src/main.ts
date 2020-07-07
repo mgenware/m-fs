@@ -15,15 +15,11 @@ export async function readTextFileAsync(path: string): Promise<string> {
 export async function writeFileAsync(
   path: string,
   data: any,
-  options?:
-    | { encoding?: string | null; mode?: number | string; flag?: string }
-    | string
-    | undefined
-    | null,
+  options?: fs.WriteFileOptions,
 ): Promise<void> {
   const dirPath = nodepath.dirname(path);
   await mkDir(dirPath);
-  await nodeWriteFileAsync(path, data, options);
+  await nodeWriteFileAsync(path, data, options as any);
 }
 
 export async function statOrNullAsync(path: string): Promise<fs.Stats | null> {
@@ -55,7 +51,7 @@ export async function dirExists(path: string): Promise<boolean> {
   return false;
 }
 
-export async function listSubPaths(
+export async function subPaths(
   path: string,
   options?:
     | { encoding: BufferEncoding | null }
@@ -66,18 +62,18 @@ export async function listSubPaths(
   return await readdirAsync(path, options);
 }
 
-export async function listSubDirs(dir: string): Promise<string[]> {
-  const paths: string[] = await listSubPaths(dir);
-  const dirs = await filterAsync(paths, async path => {
+export async function subDirs(dir: string): Promise<string[]> {
+  const paths: string[] = await subPaths(dir);
+  const dirs = await filterAsync(paths, async (path) => {
     const stat = await statAsync(nodepath.join(dir, path));
     return stat.isDirectory();
   });
   return dirs;
 }
 
-export async function listSubFiles(dir: string): Promise<string[]> {
-  const paths: string[] = await listSubPaths(dir);
-  const dirs = await filterAsync(paths, async path => {
+export async function subFiles(dir: string): Promise<string[]> {
+  const paths: string[] = await subPaths(dir);
+  const dirs = await filterAsync(paths, async (path) => {
     const stat = await statAsync(nodepath.join(dir, path));
     return stat.isFile();
   });

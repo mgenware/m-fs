@@ -9,5 +9,5 @@ it('Verify type definition files', async () => {
 });
 
 it('Verify a member', () => {
-  assert.equal(typeof main.listSubFiles, 'function');
+  assert.equal(typeof main.subFiles, 'function');
 });
