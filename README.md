@@ -14,22 +14,7 @@ yarn add m-fs
 npm install m-fs --save
 ```
 
-Run tests:
-
-```bash
-yarn test
-npm test
-```
-
 ## Usage
-
-JavaScript:
-
-```javascript
-const mfs = require('m-fs');
-```
-
-TypeScript:
 
 ```typescript
 import * as mfs from 'm-fs';
