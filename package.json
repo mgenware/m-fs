@@ -1,6 +1,6 @@
 {
   "name": "m-fs",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "description": "Helper functions for node fs",
   "type": "module",
   "exports": "./dist/main.js",
