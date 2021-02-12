@@ -1,22 +1,20 @@
-# m-fs
+# node-mean-template
 
-[![MEAN Module](https://img.shields.io/badge/MEAN%20Module-TypeScript-blue.svg)](https://github.com/mgenware/MEAN-Module)
-[![Build Status](https://travis-ci.org/mgenware/m-fs.svg?branch=master)](http://travis-ci.org/mgenware/m-fs)
-[![npm version](https://badge.fury.io/js/m-fs.svg)](https://badge.fury.io/js/m-fs)
-[![Node.js Version](http://img.shields.io/node/v/m-fs.svg)](https://nodejs.org)
+[![Build Status](https://github.com/mgenware/m-fs/workflows/Build/badge.svg)](https://github.com/mgenware/m-fs/actions)
+[![npm version](https://img.shields.io/npm/v/m-fs.svg?style=flat-square)](https://npmjs.com/package/m-fs)
+[![Node.js Version](http://img.shields.io/node/v/m-fs.svg?style=flat-square)](https://nodejs.org/en/)
 
-Common Node.js file system promises API.
+Helper functions for node fs.
 
-### Installation
+## Installation
 
-```bash
+```sh
 yarn add m-fs
-npm install m-fs --save
 ```
 
 ## Usage
 
-```typescript
+```ts
 import * as mfs from 'm-fs';
 ```
 
@@ -48,7 +46,7 @@ Returns `true` if the given path/directory/file exists.
 
 ### `subPaths`, `subDirs`, `subFiles`
 
-```js
+```ts
 await subPaths('./data/docs');
 // ['backup', 'resume.pdf', 'readme.md']
 
