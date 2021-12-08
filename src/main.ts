@@ -1,6 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as fs from 'fs';
-import * as nodepath from 'path';
+import { FileHandle } from 'fs/promises';
+import * as nodePath from 'path';
+import { Stream } from 'stream';
 
 export const nodeWriteFileAsync = fs.promises.writeFile;
 export const readFileAsync = fs.promises.readFile;
@@ -29,13 +30,19 @@ export async function readTextFileAsync(path: string): Promise<string> {
 }
 
 export async function writeFileAsync(
-  path: string,
-  data: any,
-  options?: fs.WriteFileOptions,
+  path: fs.PathLike | FileHandle,
+  data:
+    | string
+    | NodeJS.ArrayBufferView
+    | Iterable<string | NodeJS.ArrayBufferView>
+    | AsyncIterable<string | NodeJS.ArrayBufferView>
+    | Stream,
 ): Promise<void> {
-  const dirPath = nodepath.dirname(path);
-  await fs.promises.mkdir(dirPath, { recursive: true });
-  await nodeWriteFileAsync(path, data, options as any);
+  if (typeof path === 'string') {
+    const dirPath = nodePath.dirname(path);
+    await fs.promises.mkdir(dirPath, { recursive: true });
+  }
+  await nodeWriteFileAsync(path, data);
 }
 
 export async function statOrNullAsync(path: string): Promise<fs.Stats | null> {
@@ -67,11 +74,8 @@ export async function dirExists(path: string): Promise<boolean> {
   return false;
 }
 
-export async function subPaths(
-  dir: string,
-  options?: (fs.BaseEncodingOptions & { withFileTypes?: false }) | BufferEncoding | null,
-): Promise<string[]> {
-  return readdirAsync(dir, options);
+export async function subPaths(dir: string): Promise<string[]> {
+  return readdirAsync(dir);
 }
 
 export interface PathInfo {
@@ -79,14 +83,11 @@ export interface PathInfo {
   isFile: boolean;
 }
 
-export async function subPathsWithType(
-  dir: string,
-  options?: (fs.BaseEncodingOptions & { withFileTypes?: false }) | BufferEncoding | null,
-): Promise<PathInfo[]> {
-  const paths = await subPaths(dir, options);
+export async function subPathsWithType(dir: string): Promise<PathInfo[]> {
+  const paths = await subPaths(dir);
   return Promise.all(
     paths.map(async (path) => {
-      const stat = await statAsync(nodepath.join(dir, path));
+      const stat = await statAsync(nodePath.join(dir, path));
       const isFile = stat.isFile();
       return { path, isFile };
     }),
@@ -96,7 +97,7 @@ export async function subPathsWithType(
 export async function subDirs(dir: string): Promise<string[]> {
   const paths: string[] = await subPaths(dir);
   const dirs = await filterAsync(paths, async (path) => {
-    const stat = await statAsync(nodepath.join(dir, path));
+    const stat = await statAsync(nodePath.join(dir, path));
     return stat.isDirectory();
   });
   return dirs;
@@ -105,7 +106,7 @@ export async function subDirs(dir: string): Promise<string[]> {
 export async function subFiles(dir: string): Promise<string[]> {
   const paths: string[] = await subPaths(dir);
   const dirs = await filterAsync(paths, async (path) => {
-    const stat = await statAsync(nodepath.join(dir, path));
+    const stat = await statAsync(nodePath.join(dir, path));
     return stat.isFile();
   });
   return dirs;
