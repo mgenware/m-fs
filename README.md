@@ -1,4 +1,4 @@
-# node-mean-template
+# m-fs
 
 [![Build Status](https://github.com/mgenware/m-fs/workflows/Build/badge.svg)](https://github.com/mgenware/m-fs/actions)
 [![npm version](https://img.shields.io/npm/v/m-fs.svg?style=flat-square)](https://npmjs.com/package/m-fs)
