@@ -29,6 +29,10 @@ export async function readTextFileAsync(path: string): Promise<string> {
   return fs.promises.readFile(path, 'utf8');
 }
 
+export async function mkdirp(path: string) {
+  return fs.promises.mkdir(path, { recursive: true });
+}
+
 export async function writeFileAsync(
   path: fs.PathLike | FileHandle,
   data:
