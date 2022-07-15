@@ -9,7 +9,7 @@ Helper functions for node fs.
 ## Installation
 
 ```sh
-yarn add m-fs
+npm add m-fs
 ```
 
 ## Usage
@@ -22,23 +22,19 @@ import * as mfs from 'm-fs';
 
 ### `readFileAsync`
 
-`fs.readFile` in a Promise.
-
-### `nodeWriteFileAsync`
-
-`fs.writeFile` in a Promise. Consider using `writeFileAsync` instead as `fs.writeFile` errors when it writes to a non-existent directory.
+Calls `fs.promises.readFile`.
 
 ### `writeFileAsync`
 
-Unlike `nodeWriteFileAsync`, this method makes ensure the target directory is created before writing the file.
+Calls `fs.promises.writeFile`. This method also makes ensure the target directory is created before writing the file.
 
 ### `statAsync`
 
-`fs.stat` in a Promise.
+Calls `fs.promises.stat`.
 
 ### `statOrNullAsync`
 
-Like `statAsync`, but returns `null` on error.
+Like `statAsync`, but instead of throwing an error, it returns `null` in that case.
 
 ### `pathExists`, `dirExists`, `fileExists`
 
@@ -59,3 +55,7 @@ await subDirs('./data/docs');
 await subFiles('./data/docs');
 // ['resume.pdf', 'readme.md']
 ```
+
+### `mkdirp`
+
+Calls `fs.promises.mkdir` with `{ recursive: true }`.
